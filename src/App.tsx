@@ -1,35 +1,18 @@
-import type { ReportCasts } from '../common/types.ts'
-import { WowIcon } from './WowIcon.tsx'
-import { reports } from '../data/reports.ts'
-
-interface Props {
-  report: ReportCasts
-}
-
-function Casts({ report }: Props) {
-  const sortedCasts = report.casts.toSorted((a, b) => b.count - a.count)
-  return (
-    <div className="flex gap-2">
-      {sortedCasts.map((cast) => (
-        <div key={cast.guid} className="flex">
-          <WowIcon icon={cast.icon} size={24} />: {cast.count}
-        </div>
-      ))}
-    </div>
-  )
-}
+import { specData } from '../data/specData.ts'
+import { SpecSummary } from './SpecSummary.tsx'
 
 export function App() {
   return (
-    <div>
-      {reports.map((specReports) => (
-        <div key={`${specReports.class}-${specReports.spec}`}>
-          {specReports.spec} {specReports.class}
-          {specReports.reports.map((report) => (
-            <Casts key={`${report.code}-${report.playerId}`} report={report} />
-          ))}
-        </div>
-      ))}
+    <div className="p-4">
+      <div className="text-2xl font-bold">Bloater</div>
+      <div className="flex flex-col gap-2">
+        {specData.map((specReports) => (
+          <SpecSummary
+            key={`${specReports.class}-${specReports.spec}`}
+            specReports={specReports}
+          />
+        ))}
+      </div>
     </div>
   )
 }

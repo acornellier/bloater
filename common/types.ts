@@ -15,7 +15,7 @@ export interface ReportCasts {
   casts: Cast[]
 }
 
-export interface SpecReports {
+export interface SpecData {
   class: WowClass
   spec: WowSpec
   reports: ReportCasts[]

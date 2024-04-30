@@ -1,7 +1,7 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import { defineConfig, splitVendorChunkPlugin } from 'vite'
+import react from '@vitejs/plugin-react-swc'
+import compileTime from 'vite-plugin-compile-time'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-});
+  plugins: [react(), splitVendorChunkPlugin(), compileTime()],
+})
